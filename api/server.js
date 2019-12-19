@@ -40,6 +40,7 @@ server.use(sessions(sessionConfig));
 
 // Call authRouter
 server.use('/api', authRouter);
+server.use('/api/users', authRouter);
 
 // Global test endpoint
 server.get('/', (req, res) => {

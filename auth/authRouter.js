@@ -6,6 +6,8 @@ const restricted = require('../middleware/restricted');
 
 const router = express.Router();
 
+
+
 // Register--------------------------------------------
 router.post('/register', (req, res) => {
 	let user = req.body;
@@ -64,6 +66,20 @@ router.get('/logout', (req, res) => {
 	}
 });
 
+
+
+
+router.get('/users', (req, res) => {
+	userDb
+		.get()
+		.then(found => {
+			res.status(200).json(found);
+		})
+		.catch(err => {
+			res.status(500).json(err);
+		})
+})
+
 // Global GET with restricted middleware------------------------------
 router.get('/restricted/users', restricted, (req, res) => {
 	userDb
@@ -75,5 +91,11 @@ router.get('/restricted/users', restricted, (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+
+
+
+
+
 
 module.exports = router;

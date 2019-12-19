@@ -3,7 +3,8 @@ module.exports = {
 	get,
 	getBy,
     add,
-    findById
+    findById,
+    everyUser,
 };
 
 function get() {
@@ -31,4 +32,8 @@ function findById(id) {
       .select("id", "username")
       .where({ id })
       .first();
+  }
+
+  function everyUser(){
+    return db('users');
   }
